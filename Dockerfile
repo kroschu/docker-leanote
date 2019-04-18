@@ -1,16 +1,16 @@
-FROM alpine:latest
+FROM arm32v7/alpine:latest
 
 ENV LEANOTE_VERSION=2.6.1
 
 RUN apk --update add curl mongodb-tools && \
     curl -L http://sourceforge.net/projects/leanote-bin/files/${LEANOTE_VERSION}/leanote-linux-amd64-v${LEANOTE_VERSION}.bin.tar.gz/download >> \
-    /usr/local/leanote-linux-amd64.bin.tar.gz && \
+    /usr/local/leanote-linux-arm.bin.tar.gz && \
     curl -L https://raw.githubusercontent.com/mariusv/docker-leanote/master/leanote_install_data.tar.gz >> \
     /usr/local/leanote_install_data.tar.gz && \
     apk del --purge curl && \
     rm -rf /var/cache/apk/* \
-    && tar -xzvf /usr/local/leanote-linux-amd64.bin.tar.gz -C / \
-    && rm -f /usr/local/leanote-linux-amd64.bin.tar.gz \
+    && tar -xzvf /usr/local/leanote-linux-arm.bin.tar.gz -C / \
+    && rm -f /usr/local/leanote-linux-arm.bin.tar.gz \
     && mkdir -p /leanote/data/public/upload \
     && mkdir -p /leanote/data/files \
     && mkdir -p /leanote/data/mongodb_backup \
