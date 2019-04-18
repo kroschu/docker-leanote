@@ -4,19 +4,19 @@ services:
   db:
     restart: always
     container_name: mongodb_server
-    image: mongo:3.2.3
+    image: ivanmarban/armhf-mongodb
     volumes:
-      - ./leanote_data:/data/db
+      - ./leanote_data:/var/lib/mongodb
 
   server:
-    image: mariusv/leanote
+    image: kroschu/armhf-leanote
     environment:
-      - SITE_URL="http://localhost:9000"
+      - SITE_URL="http://localhost:9003"
     depends_on:
       - db
     restart: always
     ports:
-      - 9000:9000
+      - 9003:9000
     links:
       - db:mongodb
     container_name: leanote_server
