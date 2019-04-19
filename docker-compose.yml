@@ -9,9 +9,9 @@ services:
       - ./leanote_data:/var/lib/mongodb
 
   server:
-    image: kroschu/armhf-leanote-ua
+    image: kroschu/armhf-leanote
     environment:
-      - SITE_URL="http://localhost:9003"
+      - SITE_URL="http://localhost:9004"
     depends_on:
       - db
     restart: always
