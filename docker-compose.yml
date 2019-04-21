@@ -7,6 +7,20 @@ services:
     image: ivanmarban/armhf-mongodb
     volumes:
       - ./leanote_data:/var/lib/mongodb
+  
+  maildev:
+    image: kroschu/armhf-maildev
+    container_name: leanote_maildev
+    ports:
+    - 8080:80
+    environment:
+     - WEB=80 
+     - SMTP 25 
+     - OUTGOUING-HOST=smtp.gmail.com  
+     - OUTGOUING-SECURE=true 
+     - OUTGOUING-PORT=465  
+     - OUTGOUING-USER='tukroschu@gmail.com' 
+     - OUTGOUING-PASS='Agni05230523'
 
   server:
     image: kroschu/armhf-leanote
@@ -14,12 +28,15 @@ services:
       - SITE_URL="https://blog.uabp.ml"
     depends_on:
       - db
+      - maildev
     restart: always
     ports:
       - 9004:9000
     links:
       - db:mongodb
+      - maildev:maildev
     container_name: leanote_server
 
     volumes:
       - ./leanote/data:/leanote/data
+
