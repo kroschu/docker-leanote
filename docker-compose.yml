@@ -11,12 +11,11 @@ services:
   maildev:
     image: kroschu/armhf-maildev
     container_name: leanote_maildev
-    command: env NODE_ENV=development bin/maildev --web 80 --smtp 25 --outgoing-host  smtp.gmail.com  --outgoing-secure  true --outgoing-port 465  --outgoing-user 'tukroschu@gmail.com'  --outgoing-pass 'Agni05230523' --auto-relay trebatk@hotmail.com --verbose
+    command: bin/maildev --web 80 --smtp 25 --outgoing-host  smtp.gmail.com  --outgoing-secure  true --outgoing-port 465 --incoming-user 'admin'  --incoming-pass '805235io' --outgoing-user 'tukroschu@gmail.com'  --outgoing-pass 'Agni05230523' --auto-relay trebatk@hotmail.com --verbose
     ports:
     - 8080:80
-    environment:
-      - NODE_ENV=development
-
+    - 1025:25
+    
   server:
     image: kroschu/armhf-leanote
     environment:
