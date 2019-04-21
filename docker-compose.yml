@@ -15,12 +15,14 @@ services:
     - 8080:80
     environment:
      - WEB=80 
-     - SMTP 25 
+     - SMTP=25 
      - OUTGOUING-HOST=smtp.gmail.com  
      - OUTGOUING-SECURE=true 
      - OUTGOUING-PORT=465  
      - OUTGOUING-USER='tukroschu@gmail.com' 
      - OUTGOUING-PASS='Agni05230523'
+     - INCOMING-USER=admin
+     - INCOMING-PASS=admin
 
   server:
     image: kroschu/armhf-leanote
@@ -39,4 +41,5 @@ services:
 
     volumes:
       - ./leanote/data:/leanote/data
+
 
