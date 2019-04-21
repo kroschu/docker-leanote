@@ -21,8 +21,8 @@ services:
      - OUTGOUING-PORT=465  
      - OUTGOUING-USER='tukroschu@gmail.com' 
      - OUTGOUING-PASS='Agni05230523'
-     - INCOMING-USER=admin
-     - INCOMING-PASS=admin
+     - INCOMING-USER='admin' 
+     - INCOMING-PASS='admin' 
 
   server:
     image: kroschu/armhf-leanote
@@ -41,5 +41,4 @@ services:
 
     volumes:
       - ./leanote/data:/leanote/data
-
 
