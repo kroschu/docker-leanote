@@ -6,11 +6,20 @@ services:
     container_name: mongodb_server
     image: ivanmarban/armhf-mongodb
     volumes:
-      - ./leanote_data:/var/lib/mongodb
-  
-  
+      - ./leanote_data:/data/db
+
   server:
     image: kroschu/armhf-leanote
     environment:
-      - SITE_URL="https://blog.uabp.ml
+      - SITE_URL="https://blog.uabp.ml/"
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 9009:9000
+    links:
+      - db:mongodb
+    container_name: leanote_server
 
+    volumes:
+      - ./leanote/data:/leanote/data
