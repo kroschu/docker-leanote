@@ -8,29 +8,9 @@ services:
     volumes:
       - ./leanote_data:/var/lib/mongodb
   
-  maildev:
-    image: kroschu/armhf-maildev
-    container_name: leanote_maildev
-    command: bin/maildev --web 80 --smtp 25 --outgoing-host  smtp.gmail.com  --outgoing-secure  true --outgoing-port 465 --incoming-user 'admin'  --incoming-pass '805235io' --outgoing-user 'tukroschu@gmail.com'  --outgoing-pass 'Agni05230523' --auto-relay trebatk@hotmail.com --verbose
-    ports:
-    - 8080:80
-    - 1025:25
-    
+  
   server:
     image: kroschu/armhf-leanote
     environment:
-      - SITE_URL="https://blog.uabp.ml"
-    depends_on:
-      - db
-      - maildev
-    restart: always
-    ports:
-      - 9004:9000
-    links:
-      - db:mongodb
-      - maildev:maildev
-    container_name: leanote_server
-
-    volumes:
-      - ./leanote/data:/leanote/data
+      - SITE_URL="https://blog.uabp.ml
 
