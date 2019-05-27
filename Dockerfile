@@ -1,4 +1,4 @@
-FROM arm32v7/alpine:latest
+FROM balenalib/aarch64-alpine
 
 ENV LEANOTE_VERSION=2.6.1
 ENV SITE_LENG=uk
